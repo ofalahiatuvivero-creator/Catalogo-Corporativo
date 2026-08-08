@@ -677,18 +677,25 @@ async function submitQuote(e){
     const ciudad = document.getElementById('f_city').value;
     const mensajeAdicional = document.getElementById('f_message').value;
 
-    let mensaje = `*¡Nueva Solicitud de Cotización Corporativa!*%0A%0A` +
-                  `🏢 *Empresa:* ${empresa}%0A` +
-                  `👤 *Contacto:* ${contacto}%0A` +
-                  `📞 *Teléfono:* ${telefono}%0A` +
-                  `📧 *Email:* ${email}%0A` +
-                  `📄 *NIT:* ${nit || 'No especificado'}%0A` +
-                  `📍 *Ciudad:* ${ciudad}%0A` +
-                  `📝 *Detalles:* ${mensajeAdicional}`;
+    const totalUnidades = cart.reduce((s,i)=>s+i.quantity,0);
+    const listaProductos = cart
+      .map((i, idx) => `${idx+1}. ${i.name} — ${i.quantity} ${i.unit}${i.quantity>1?'es':''}`)
+      .join('\n');
 
-    let numeroWhatsApp = "573015462950";
+    const mensaje =
+      `*¡Nueva Solicitud de Cotización Corporativa!*\n\n` +
+      `🏢 *Empresa:* ${empresa}\n` +
+      `👤 *Contacto:* ${contacto}\n` +
+      `📞 *Teléfono:* ${telefono}\n` +
+      `📧 *Email:* ${email}\n` +
+      `📄 *NIT:* ${nit || 'No especificado'}\n` +
+      `📍 *Ciudad:* ${ciudad}\n\n` +
+      `🌿 *Productos solicitados* (${cart.length} ${cart.length===1?'ítem':'ítems'}, ${totalUnidades} unidades):\n` +
+      `${listaProductos}\n\n` +
+      `📝 *Detalles adicionales:* ${mensajeAdicional || 'Ninguno'}`;
 
-    window.open(`https://wa.me/${numeroWhatsApp}?text=${mensaje}`, '_blank');
+    const numeroWhatsApp = "573015462950";
+    window.open(`https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`, '_blank');
 }
 
 /* ================= MISC ================= */
