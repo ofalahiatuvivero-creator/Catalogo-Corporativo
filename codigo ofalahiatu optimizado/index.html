@@ -157,22 +157,52 @@
   .filter-chip.active{ background:var(--bg-dark); color:var(--bg-cream); border-color:var(--bg-dark); }
   .product-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
   @media (max-width:980px){ .product-grid{ grid-template-columns:repeat(2,1fr); gap:16px; } }
-  .product-card{ background:rgba(255,255,255,.6); border-radius:0 0 18px 18px; }
+  .product-card{ background:transparent; }
+  .product-card .arch{ filter:drop-shadow(0 8px 18px rgba(30,67,52,.14)); transition:filter .3s ease, transform .3s ease; }
+  .product-card:hover .arch{ filter:drop-shadow(0 14px 24px rgba(30,67,52,.22)); transform:translateY(-3px); }
   .product-thumb{ aspect-ratio: 4/5; height:auto; }
-  @media (min-width:981px){ .product-thumb{ aspect-ratio:auto; height:210px; } }
+  @media (min-width:981px){ .product-thumb{ aspect-ratio:auto; height:230px; } }
   .stock-pill{
     position:absolute; top:12px; right:12px; background:rgba(30,67,52,.82); color:var(--bg-cream);
     font-size:.68rem; padding:5px 12px;
   }
-  .product-body{ padding:16px 16px 20px; }
-  .product-body h3{ font-size:.98rem; font-weight:500; }
-  .product-desc{ margin-top:6px; font-size:.83rem; color:var(--text-olive); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
-  .product-foot{ margin-top:14px; display:flex; align-items:center; justify-content:space-between; gap:8px; }
-  .price{ font-weight:700; font-size:1.05rem; }
-  .price small{ display:block; font-weight:400; font-size:.68rem; color:var(--text-olive); }
-  .add-btn{ background:var(--bg-dark); color:var(--white); width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-  .add-btn:hover{ background:var(--bg-moss); }
+  .product-body{ padding:18px 6px 8px; }
+  .product-body h3{ font-size:1.02rem; font-weight:500; letter-spacing:.005em; }
+  .product-desc{ margin-top:6px; font-size:.83rem; color:var(--text-olive); display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; line-height:1.5; }
+  .product-foot{ margin-top:14px; padding-top:14px; border-top:1px solid rgba(90,98,83,.15); display:flex; align-items:center; justify-content:space-between; gap:8px; }
+  .price{ font-weight:700; font-size:1.05rem; color:var(--bg-dark); }
+  .price small{ display:block; font-weight:400; font-size:.68rem; color:var(--text-olive); letter-spacing:.02em; }
+  .add-btn{ background:var(--bg-dark); color:var(--white); width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; flex-shrink:0; box-shadow:0 4px 10px rgba(30,67,52,.25); transition:background .2s, transform .2s, box-shadow .2s; }
+  .add-btn:hover{ background:var(--bg-moss); transform:scale(1.08); box-shadow:0 6px 14px rgba(30,67,52,.35); }
   .add-btn svg{ width:18px; height:18px; }
+
+  /* availability note */
+  .avail-note{
+    margin-top:56px; padding:32px 36px; border-radius:22px;
+    background:linear-gradient(135deg, rgba(129,145,113,.14), rgba(60,106,80,.08));
+    border:1px solid rgba(129,145,113,.28);
+    display:flex; gap:24px; align-items:flex-start;
+    position:relative; overflow:hidden;
+  }
+  .avail-note::before{
+    content:""; position:absolute; top:0; left:0; width:5px; height:100%;
+    background:linear-gradient(180deg, var(--bg-moss), var(--bg-dark));
+  }
+  .avail-note-icon{
+    flex-shrink:0; width:52px; height:52px; border-radius:50%;
+    background:var(--bg-dark); color:var(--bg-cream);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .avail-note-icon svg{ width:26px; height:26px; }
+  .avail-note-body p.eyebrow{ margin-bottom:8px; }
+  .avail-note-body h3{ font-family:var(--font-display); font-size:1.25rem; font-weight:500; color:var(--bg-dark); line-height:1.3; }
+  .avail-note-body p.txt{ margin-top:10px; color:var(--text-olive); line-height:1.65; font-size:.92rem; max-width:640px; }
+  .avail-note-body a{ color:var(--bg-dark); font-weight:600; border-bottom:1px solid var(--bg-moss); }
+  @media (max-width:640px){
+    .avail-note{ padding:24px; flex-direction:column; gap:14px; margin-top:40px; }
+    .avail-note-icon{ width:44px; height:44px; }
+    .avail-note-body h3{ font-size:1.1rem; }
+  }
 
   /* about */
   .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center; }
@@ -341,6 +371,21 @@
     </div>
     <div class="filter-row" id="filterRow"></div>
     <div class="product-grid" id="productGrid"></div>
+
+    <div class="avail-note" role="note" aria-label="Disponibilidad adicional">
+      <div class="avail-note-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2c1.5 3 4 5 7 5-2 4-2 8 0 12-3 0-5.5 2-7 5-1.5-3-4-5-7-5 2-4 2-8 0-12 3 0 5.5-2 7-5Z"/>
+        </svg>
+      </div>
+      <div class="avail-note-body">
+        <p class="eyebrow">Disponibilidad ampliada</p>
+        <h3>Este catálogo es solo una selección de nuestra oferta</h3>
+        <p class="txt">Trabajamos con más de 120 especies adicionales bajo pedido: variedades premium, ejemplares de gran formato, materas artesanales y arreglos exclusivos para paisajismo corporativo, hoteles y eventos. Si buscas una especie específica o un volumen mayor, escríbenos y coordinamos la propuesta a la medida de tu proyecto.
+        <br><br>
+        📧 <a href="mailto:ofalahiatuvivero@gmail.com">ofalahiatuvivero@gmail.com</a> · 📱 <a href="https://wa.me/573015462950" target="_blank" rel="noopener">WhatsApp comercial</a></p>
+      </div>
+    </div>
   </div>
 </section>
 
