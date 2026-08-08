@@ -231,6 +231,16 @@
   .qty-val:focus{ outline:none; border-color:var(--bg-moss); }
   .qty-val::-webkit-outer-spin-button, .qty-val::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
   .qty-val{ -moz-appearance:textfield; appearance:textfield; }
+  .item-subtotal{ font-size:.82rem; font-weight:600; color:var(--bg-dark); margin-top:6px; }
+  .item-subtotal small{ font-weight:400; color:var(--text-olive); font-size:.72rem; }
+  .cart-total{
+    background:var(--bg-dark); color:var(--bg-cream);
+    border-radius:14px; padding:16px 18px; margin:18px 0 24px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .cart-total .label{ font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; color:rgba(227,232,216,.7); }
+  .cart-total .amount{ font-family:var(--font-display); font-size:1.35rem; font-weight:600; }
+  .cart-total .disclaimer{ display:block; font-size:.65rem; color:rgba(227,232,216,.55); margin-top:2px; font-weight:400; letter-spacing:0; text-transform:none; }
   .remove-btn{ color:rgba(30,67,52,.45); flex-shrink:0; background:none; }
   .remove-btn:hover{ color:#c0392b; }
   .remove-btn svg{ width:16px; height:16px; }
@@ -560,8 +570,8 @@ function addToCart(productId){
   const p = PRODUCTS.find(x=>x.id===productId);
   if(!p) return;
   const existing = cart.find(i=>i.id===productId);
-  if(existing){ existing.quantity += p.min; }
-  else{ cart.push({ id:p.id, name:p.name, unit:p.unit, quantity:p.min, catIcon:p.cat }); }
+  if(existing){ existing.quantity += p.min; existing.price = p.price; }
+  else{ cart.push({ id:p.id, name:p.name, unit:p.unit, quantity:p.min, catIcon:p.cat, price:p.price }); }
   saveCart();
   openCart();
 }
@@ -591,6 +601,9 @@ function removeItem(id){
 
 /* ================= DRAWER ================= */
 let drawerSuccess = false;
+
+const priceOf = i => typeof i.price === 'number' ? i.price : (PRODUCTS.find(p=>p.id===i.id)?.price || 0);
+const cartTotal = () => cart.reduce((s,i)=> s + priceOf(i)*i.quantity, 0);
 
 function openCart(){
   document.getElementById("overlay").classList.add("open");
@@ -634,6 +647,7 @@ function renderDrawer(){
               <input type="number" class="qty-val" min="1" value="${i.quantity}" onchange="setQty(${i.id}, this.value)" onclick="this.select()" inputmode="numeric" />
               <button class="qty-btn" onclick="updateQty(${i.id},1,1)" aria-label="Sumar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
             </div>
+            <div class="item-subtotal">${fmtCOP(priceOf(i)*i.quantity)} <small>(${fmtCOP(priceOf(i))} c/u)</small></div>
           </div>
           <button class="remove-btn" onclick="removeItem(${i.id})" aria-label="Quitar">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6M14 11v6"/></svg>
@@ -641,8 +655,19 @@ function renderDrawer(){
         </div>`;
       }).join("");
 
+  const totalHtml = cart.length === 0 ? '' : `
+    <div class="cart-total">
+      <div>
+        <div class="label">Total estimado</div>
+        <span class="disclaimer">Sujeto a confirmación comercial</span>
+      </div>
+      <div class="amount">${fmtCOP(cartTotal())}</div>
+    </div>
+  `;
+
   body.innerHTML = `
     ${itemsHtml}
+    ${totalHtml}
     <p class="form-title">Datos de la empresa</p>
     <form id="quoteForm" onsubmit="submitQuote(event)">
       <input class="field" required placeholder="Nombre de la empresa" id="f_company" />
@@ -678,8 +703,9 @@ async function submitQuote(e){
     const mensajeAdicional = document.getElementById('f_message').value;
 
     const totalUnidades = cart.reduce((s,i)=>s+i.quantity,0);
+    const totalPrecio = cartTotal();
     const listaProductos = cart
-      .map((i, idx) => `${idx+1}. ${i.name} — ${i.quantity} ${i.unit}${i.quantity>1?'es':''}`)
+      .map((i, idx) => `${idx+1}. ${i.name} — ${i.quantity} x ${fmtCOP(priceOf(i))} = ${fmtCOP(priceOf(i)*i.quantity)}`)
       .join('\n');
 
     const mensaje =
@@ -692,6 +718,8 @@ async function submitQuote(e){
       `📍 *Ciudad:* ${ciudad}\n\n` +
       `🌿 *Productos solicitados* (${cart.length} ${cart.length===1?'ítem':'ítems'}, ${totalUnidades} unidades):\n` +
       `${listaProductos}\n\n` +
+      `💰 *TOTAL ESTIMADO:* ${fmtCOP(totalPrecio)}\n` +
+      `_(Sujeto a confirmación comercial)_\n\n` +
       `📝 *Detalles adicionales:* ${mensajeAdicional || 'Ninguno'}`;
 
     const numeroWhatsApp = "573015462950";
