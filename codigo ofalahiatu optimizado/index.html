@@ -156,10 +156,10 @@
   }
   .filter-chip.active{ background:var(--bg-dark); color:var(--bg-cream); border-color:var(--bg-dark); }
   .product-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
-  @media (max-width:980px){ .product-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:520px){ .product-grid{ grid-template-columns:1fr; } }
+  @media (max-width:980px){ .product-grid{ grid-template-columns:repeat(2,1fr); gap:16px; } }
   .product-card{ background:rgba(255,255,255,.6); border-radius:0 0 18px 18px; }
-  .product-thumb{ height:210px; }
+  .product-thumb{ aspect-ratio: 4/5; height:auto; }
+  @media (min-width:981px){ .product-thumb{ aspect-ratio:auto; height:210px; } }
   .stock-pill{
     position:absolute; top:12px; right:12px; background:rgba(30,67,52,.82); color:var(--bg-cream);
     font-size:.68rem; padding:5px 12px;
@@ -225,9 +225,12 @@
   .cart-item-info{ flex:1; min-width:0; }
   .cart-item-info p{ font-size:.85rem; font-weight:500; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .qty-row{ display:flex; align-items:center; gap:8px; margin-top:6px; }
-  .qty-btn{ width:22px; height:22px; border-radius:50%; background:var(--bg-sage); display:flex; align-items:center; justify-content:center; }
+  .qty-btn{ width:26px; height:26px; border-radius:50%; background:var(--bg-sage); display:flex; align-items:center; justify-content:center; border:none; }
   .qty-btn svg{ width:11px; height:11px; }
-  .qty-val{ font-size:.82rem; width:34px; text-align:center; }
+  .qty-val{ font-size:.9rem; width:48px; text-align:center; padding:4px 6px; border:1px solid rgba(90,98,83,.25); border-radius:8px; background:var(--white); font-family:inherit; color:var(--bg-dark); font-weight:600; }
+  .qty-val:focus{ outline:none; border-color:var(--bg-moss); }
+  .qty-val::-webkit-outer-spin-button, .qty-val::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+  .qty-val{ -moz-appearance:textfield; appearance:textfield; }
   .remove-btn{ color:rgba(30,67,52,.45); flex-shrink:0; background:none; }
   .remove-btn:hover{ color:#c0392b; }
   .remove-btn svg{ width:16px; height:16px; }
@@ -571,6 +574,15 @@ function updateQty(id, delta, step){
   renderDrawer();
 }
 
+function setQty(id, value){
+  const item = cart.find(i=>i.id===id);
+  if(!item) return;
+  const n = parseInt(value, 10);
+  item.quantity = (isNaN(n) || n < 1) ? 1 : n;
+  saveCart();
+  renderDrawer();
+}
+
 function removeItem(id){
   cart = cart.filter(i=>i.id!==id);
   saveCart();
@@ -618,9 +630,9 @@ function renderDrawer(){
           <div class="cart-item-info">
             <p>${i.name}</p>
             <div class="qty-row">
-              <button class="qty-btn" onclick="updateQty(${i.id},-1,10)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
-              <span class="qty-val">${i.quantity}</span>
-              <button class="qty-btn" onclick="updateQty(${i.id},1,10)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+              <button class="qty-btn" onclick="updateQty(${i.id},-1,1)" aria-label="Restar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
+              <input type="number" class="qty-val" min="1" value="${i.quantity}" onchange="setQty(${i.id}, this.value)" onclick="this.select()" inputmode="numeric" />
+              <button class="qty-btn" onclick="updateQty(${i.id},1,1)" aria-label="Sumar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></button>
             </div>
           </div>
           <button class="remove-btn" onclick="removeItem(${i.id})" aria-label="Quitar">
@@ -674,7 +686,7 @@ async function submitQuote(e){
                   `📍 *Ciudad:* ${ciudad}%0A` +
                   `📝 *Detalles:* ${mensajeAdicional}`;
 
-    let numeroWhatsApp = "573000000000"; 
+    let numeroWhatsApp = "573015462950";
 
     window.open(`https://wa.me/${numeroWhatsApp}?text=${mensaje}`, '_blank');
 }
