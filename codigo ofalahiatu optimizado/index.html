@@ -178,7 +178,7 @@
         rgba(30, 67, 52, 0.82) 50%,
         rgba(30, 67, 52, 0.65) 100%  
       ),
-      url('lengua-amarilla.jpeg');
+      url('lengua-amarilla.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed; 
@@ -382,7 +382,7 @@
   <div class="wrap nav-inner">
    <a href="#" class="logo">
    <div style="display: flex; align-items: center; gap: 10px;">
-   <img src="Logo/ofalahiatu.png" alt="Icono Ofalahiatu" style="height: 34px; width: auto; object-fit: contain;">
+   <img src="Logo/ofalahiatu.webp" alt="Icono Ofalahiatu" style="height: 34px; width: auto; object-fit: contain;">
         <div style="display: flex; flex-direction: column;">
           <span style="font-family: var(--font-display, sans-serif); font-size: 1.15rem; font-weight: 700; color: #f2f1ea; letter-spacing: .02em; line-height: 1.1;">Ofalahiatu</span>
           <span style="font-family: var(--font-body, sans-serif); font-size: 0.7rem; font-weight: 500; color: #c5a880; letter-spacing: .12em; text-transform: uppercase; margin-top: 1px;">Vivero Virtual</span>
@@ -476,7 +476,7 @@
 <section id="nosotros" class="section-sage">
   <div class="wrap about-grid">
     <div class="arch about-img">
-      <img src="Ocobo.png" alt="Árbol de ocobo rosado en el vivero Ofalahiatu en Fusagasugá, con flores caídas y cultivo al fondo" style="object-position: center 55%;">
+      <img src="Ocobo.webp" alt="Árbol de ocobo rosado en el vivero Ofalahiatu en Fusagasugá, con flores caídas y cultivo al fondo" style="object-position: center 55%;">
     </div>
     <div class="about-text">
       <p class="eyebrow">Quiénes somos</p>
@@ -528,7 +528,7 @@
   <div class="wrap foot-grid">
     <div>
       <a href="#" class="logo">
-<img src="Logo/ofalahiatu.png" alt="Logo Ofalahiatu" style="height: 28px; width: auto; object-fit: contain; margin-right: 6px; vertical-align: middle;">        <span class="logo-text">Ofalahiatu</span>
+<img src="Logo/ofalahiatu.webp" alt="Logo Ofalahiatu" style="height: 28px; width: auto; object-fit: contain; margin-right: 6px; vertical-align: middle;">        <span class="logo-text">Ofalahiatu</span>
       </a>
       <p class="foot-desc">Especialistas en paisajismo corporativo y detalles empresariales memorables. Tenemos diferentes tipos y especies de plantas listas para entregar en su empresa.</p>
     </div>
@@ -573,34 +573,34 @@
    marcador de posición) e icono.
 ======================================================= */
 const CATEGORIES = [
-  { id: "bonsais", name: "Bonsáis", c1: "#3c6a50", c2: "#1e4334", icon: "bonsai", image: "Categorias/Bonsai.png" },
-  { id: "suculentas", name: "Suculentas", c1: "#8fae6f", c2: "#5c7a49", icon: "succulent", image: "Categorias/suculentas.png" },
-  { id: "carnivoras", name: "Plantas Carnívoras", c1: "#6a8f5b", c2: "#3a5c33", icon: "flytrap", image: "Categorias/carnivora.png" },
-  { id: "aromaticas", name: "Aromáticas", c1: "#a9b88e", c2: "#748360", icon: "herb", image: "Categorias/aromatica.png" },
-  { id: "ornamentales", name: "Ornamentales", c1: "#4f7a5e", c2: "#2c4c39", icon: "palm", image: "Categorias/ornamental.png" }
+  { id: "bonsais", name: "Bonsáis", c1: "#3c6a50", c2: "#1e4334", icon: "bonsai", image: "Categorias/Bonsai.webp" },
+  { id: "suculentas", name: "Suculentas", c1: "#8fae6f", c2: "#5c7a49", icon: "succulent", image: "Categorias/suculentas.webp" },
+  { id: "carnivoras", name: "Plantas Carnívoras", c1: "#6a8f5b", c2: "#3a5c33", icon: "flytrap", image: "Categorias/carnivora.webp" },
+  { id: "aromaticas", name: "Aromáticas", c1: "#a9b88e", c2: "#748360", icon: "herb", image: "Categorias/aromatica.webp" },
+  { id: "ornamentales", name: "Ornamentales", c1: "#4f7a5e", c2: "#2c4c39", icon: "palm", image: "Categorias/ornamental.webp" }
 ];
 
 const PRODUCTS = [
-  { id:1, cat:"bonsais", name:"Bonsái Buxus", desc:"Ejemplar formado, ideal para recepciones y oficinas corporativas.", price:12000, unit:"unidad", min:12, stock:true, image: "bonsai/buxus.png" },
-{ id:2, cat:"bonsais", name:"Bonsái Jade", desc:"Follaje suculento y troncos gruesos, excelente presencia para interiores.", price:12000, unit:"unidad", min:12, stock:true, image: "bonsai/jade.jpeg" },
-{ id:3, cat:"bonsais", name:"Bonsái rastrero", desc:"Conífera ornamental de crecimiento horizontal y follaje denso de color verde intenso, ideal para jardines, terrazas y proyectos de paisajismo.", price:12000, unit:"unidad", min:12, stock:true, image: "bonsai/rastrero.png" },
-{ id:4, cat:"bonsais", name:"Bonsái Estrella", desc:"Elegante bonsái ornamental de follaje perenne y compacto, reconocido por su intenso color verde y su forma natural armoniosa.", price:12000, unit:"unidad", min:12, stock:true, image: "bonsai/pino-estrella.png" },
-  { id:5, cat: "suculentas", name: "Haworthia Zebra", desc: "Roseta de hojas carnosas con franjas blancas, ideal para escritorios.", price: 15000, unit: "unidad", min: 12, stock: true, image: "Suculentas/cebrina.png" },
-  { id:6, cat: "suculentas", name: "Sansevieria Enana", desc: "Planta purificadora de alta resistencia y diseño moderno.", price: 12000, unit: "unidad", min: 12, stock: true, image: "Suculentas/lengua.png" },
-  { id:7, cat: "suculentas", name: "Aloe Compacto", desc: "Suculenta estética y funcional en maceta artesanal.", price: 6000, unit: "unidad", min: 12, stock: true, image: "Suculentas/sabila.png" },
-  { id:8, cat:"suculentas", name:"Semillero", desc:"Variedad de suculentas germinadas en semillero listas para sembrar.", price:3000, unit:"unidad", min:12, stock:true , image: "Suculentas/semillero.png" },  
-  { id:9, cat:"carnivoras", name:"Venus Atrapamoscas", desc:"Pieza conversacional para eventos y activaciones de marca.", price:50000, unit:"unidad", min:1, stock:true , image: "Carnivoras/Venus.png" },
-  { id:10, cat:"carnivoras", name:"Nepenthes (Planta Jarra)", desc:"Follaje colgante llamativo, muy fotogénico.", price:45000, unit:"unidad", min:1, stock:true , image: "Carnivoras/Nepentes.png" },
-  { id:11, cat:"carnivoras", name:"Sarracenia", desc:"Fácil cuidado, gran opción decorativa para terrarios.", price:50000, unit:"unidad", min:1, stock:true , image: "Carnivoras/Sarracenia.png" },         
-  { id:12, cat:"carnivoras", name:"Darlingtonia", desc:"Planta carnívora exótica de gran atractivo visual, ideal para coleccionistas y espacios decorativos que buscan un toque único, elegante y fascinante.", price:70000, unit:"unidad", min:1, stock:true , image: "Carnivoras/Darlingtonia.png" },
-  { id:13, cat:"aromaticas", name:"Romero", desc:"Aromática de uso gastronómico y decorativo para eventos.", price:6000, unit:"unidad", min:12, stock:true , image: "Aromaticas/Romero.png" },
-  { id:14, cat:"aromaticas", name:"Albahaca", desc:"Ideal para huertas corporativas y detalles de bienvenida.", price:6000, unit:"unidad", min:12, stock:true , image: "Aromaticas/Albahaca.png" },
-  { id:15, cat:"aromaticas", name:"Orégano", desc:"Ideal para huertas corporativas y detalles de bienvenida.", price:6000, unit:"unidad", min:12, stock:true , image: "Aromaticas/Oregano.png" },
-  { id:16, cat:"aromaticas", name:"Lavanda", desc:"Aroma relajante, muy solicitada para spas y hoteles.", price:6000, unit:"unidad", min:12, stock:true , image: "Aromaticas/Lavanda.png" },
-  { id:17, cat:"ornamentales", name:"Filodendro Gloriosum", desc:"Planta exótica de belleza sin igual.", price:60000, unit:"unidad", min:1, stock:true , image: "Ornamentales/Gloriosum.png" },
- { id:18, cat:"ornamentales", name:"Janet Craig", desc:"Follaje largo, exuberante y de fácil cuidado.", price:45000, unit:"unidad", min:1, stock:true , image: "Ornamentales/janet-craig.png" },
-  { id:19, cat:"ornamentales", name:"Ficus Lyrata", desc:"Hoja de violín, pieza estrella para espacios corporativos.", price:150000, unit:"unidad", min:3, stock:true , image: "Ornamentales/Ficus.png" }, 
-  { id:20, cat:"ornamentales", name:"Palma ZZ", desc:"La palma ZZ es una de las plantas de interior más fáciles de cultivar y que requieren menos mantenimiento, y se ve con frecuencia en diseños de interiores comerciales.", price:75000, unit:"unidad", min:1, stock:true , image: "Ornamentales/palma-zz.png" },
+  { id:1, cat:"bonsais", name:"Bonsái Buxus", desc:"Ejemplar formado, ideal para recepciones y oficinas corporativas.", price:12000, unit:"unidad", min:12, stock:true, image: "bonsai/buxus.webp" },
+{ id:2, cat:"bonsais", name:"Bonsái Jade", desc:"Follaje suculento y troncos gruesos, excelente presencia para interiores.", price:12000, unit:"unidad", min:12, stock:true, image: "bonsai/jade.webp" },
+{ id:3, cat:"bonsais", name:"Bonsái rastrero", desc:"Conífera ornamental de crecimiento horizontal y follaje denso de color verde intenso, ideal para jardines, terrazas y proyectos de paisajismo.", price:12000, unit:"unidad", min:12, stock:true, image: "bonsai/rastrero.webp" },
+{ id:4, cat:"bonsais", name:"Bonsái Estrella", desc:"Elegante bonsái ornamental de follaje perenne y compacto, reconocido por su intenso color verde y su forma natural armoniosa.", price:12000, unit:"unidad", min:12, stock:true, image: "bonsai/pino-estrella.webp" },
+  { id:5, cat: "suculentas", name: "Haworthia Zebra", desc: "Roseta de hojas carnosas con franjas blancas, ideal para escritorios.", price: 15000, unit: "unidad", min: 12, stock: true, image: "Suculentas/cebrina.webp" },
+  { id:6, cat: "suculentas", name: "Sansevieria Enana", desc: "Planta purificadora de alta resistencia y diseño moderno.", price: 12000, unit: "unidad", min: 12, stock: true, image: "Suculentas/lengua.webp" },
+  { id:7, cat: "suculentas", name: "Aloe Compacto", desc: "Suculenta estética y funcional en maceta artesanal.", price: 6000, unit: "unidad", min: 12, stock: true, image: "Suculentas/sabila.webp" },
+  { id:8, cat:"suculentas", name:"Semillero", desc:"Variedad de suculentas germinadas en semillero listas para sembrar.", price:3000, unit:"unidad", min:12, stock:true , image: "Suculentas/semillero.webp" },  
+  { id:9, cat:"carnivoras", name:"Venus Atrapamoscas", desc:"Pieza conversacional para eventos y activaciones de marca.", price:50000, unit:"unidad", min:1, stock:true , image: "Carnivoras/Venus.webp" },
+  { id:10, cat:"carnivoras", name:"Nepenthes (Planta Jarra)", desc:"Follaje colgante llamativo, muy fotogénico.", price:45000, unit:"unidad", min:1, stock:true , image: "Carnivoras/Nepentes.webp" },
+  { id:11, cat:"carnivoras", name:"Sarracenia", desc:"Fácil cuidado, gran opción decorativa para terrarios.", price:50000, unit:"unidad", min:1, stock:true , image: "Carnivoras/Sarracenia.webp" },         
+  { id:12, cat:"carnivoras", name:"Darlingtonia", desc:"Planta carnívora exótica de gran atractivo visual, ideal para coleccionistas y espacios decorativos que buscan un toque único, elegante y fascinante.", price:70000, unit:"unidad", min:1, stock:true , image: "Carnivoras/Darlingtonia.webp" },
+  { id:13, cat:"aromaticas", name:"Romero", desc:"Aromática de uso gastronómico y decorativo para eventos.", price:6000, unit:"unidad", min:12, stock:true , image: "Aromaticas/Romero.webp" },
+  { id:14, cat:"aromaticas", name:"Albahaca", desc:"Ideal para huertas corporativas y detalles de bienvenida.", price:6000, unit:"unidad", min:12, stock:true , image: "Aromaticas/Albahaca.webp" },
+  { id:15, cat:"aromaticas", name:"Orégano", desc:"Ideal para huertas corporativas y detalles de bienvenida.", price:6000, unit:"unidad", min:12, stock:true , image: "Aromaticas/Oregano.webp" },
+  { id:16, cat:"aromaticas", name:"Lavanda", desc:"Aroma relajante, muy solicitada para spas y hoteles.", price:6000, unit:"unidad", min:12, stock:true , image: "Aromaticas/Lavanda.webp" },
+  { id:17, cat:"ornamentales", name:"Filodendro Gloriosum", desc:"Planta exótica de belleza sin igual.", price:60000, unit:"unidad", min:1, stock:true , image: "Ornamentales/Gloriosum.webp" },
+ { id:18, cat:"ornamentales", name:"Janet Craig", desc:"Follaje largo, exuberante y de fácil cuidado.", price:45000, unit:"unidad", min:1, stock:true , image: "Ornamentales/janet-craig.webp" },
+  { id:19, cat:"ornamentales", name:"Ficus Lyrata", desc:"Hoja de violín, pieza estrella para espacios corporativos.", price:150000, unit:"unidad", min:3, stock:true , image: "Ornamentales/Ficus.webp" }, 
+  { id:20, cat:"ornamentales", name:"Palma ZZ", desc:"La palma ZZ es una de las plantas de interior más fáciles de cultivar y que requieren menos mantenimiento, y se ve con frecuencia en diseños de interiores comerciales.", price:75000, unit:"unidad", min:1, stock:true , image: "Ornamentales/palma-zz.webp" },
 
 ];
 
