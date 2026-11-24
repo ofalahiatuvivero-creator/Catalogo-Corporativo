@@ -476,7 +476,7 @@
 <section id="nosotros" class="section-sage">
   <div class="wrap about-grid">
     <div class="arch about-img">
-      <img src="Ocobo.png" alt="Árbol de ocobo rosado en el vivero Ofalahiatu en Fusagasugá, con flores caídas y cultivo al fondo" loading="lazy" decoding="async" style="object-position: center 55%;">
+      <img src="Ocobo.png" alt="Árbol de ocobo rosado en el vivero Ofalahiatu en Fusagasugá, con flores caídas y cultivo al fondo" style="object-position: center 55%;">
     </div>
     <div class="about-text">
       <p class="eyebrow">Quiénes somos</p>
@@ -624,7 +624,7 @@ function renderCategories(){
   grid.innerHTML = CATEGORIES.map(c => `
     <button class="cat-card ${activeCategory===c.id ? 'active':''}" onclick="setCategory('${c.id}')">
       <div class="arch cat-thumb">
-       <div class="art" style="--c1:${c.c1}; --c2:${c.c2}; overflow:hidden;">${c.image ? `<img src="${c.image}" alt="${c.name} del vivero Ofalahiatu" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover;">` : ICONS[c.icon]}</div>
+       <div class="art" style="--c1:${c.c1}; --c2:${c.c2}; overflow:hidden;">${c.image ? `<img src="${c.image}" alt="${c.name} del vivero Ofalahiatu" style="width:100%; height:100%; object-fit:cover;">` : ICONS[c.icon]}</div>
       </div>
       <div class="cat-name">
         <span>${c.name}</span>
@@ -662,7 +662,7 @@ function renderProducts(){
     const c = catMap[p.cat];
     return `
     <div class="product-card">
-      <div class="arch product-thumb"><div class="art" style="--c1:${c.c1}; --c2:${c.c2}; overflow:hidden;">${p.image ? `<img src="${p.image}" alt="${p.name} — ${c.name.toLowerCase()} por volumen, vivero Ofalahiatu Fusagasugá" loading="lazy" decoding="async" style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">` : ICONS[c.icon]}</div></div>
+      <div class="arch product-thumb"><div class="art" style="--c1:${c.c1}; --c2:${c.c2}; overflow:hidden;">${p.image ? `<img src="${p.image}" alt="${p.name} — ${c.name.toLowerCase()} por volumen, vivero Ofalahiatu Fusagasugá" style="width:100%; height:100%; object-fit:cover; transition:transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">` : ICONS[c.icon]}</div></div>
       <div class="product-body">
         <h3>${p.name}</h3>
         <p class="product-desc">${p.desc}</p>
