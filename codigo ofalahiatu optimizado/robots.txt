@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /catalogo-ofalahiatu_1.html
+
+Sitemap: https://ofalahiatuvivero.com/sitemap.xml
