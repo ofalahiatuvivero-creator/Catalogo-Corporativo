@@ -741,6 +741,11 @@ function closeCart(){
   document.getElementById("drawer").classList.remove("open");
   setTimeout(() => { drawerSuccess = false; }, 300);
 }
+function goToCatalog(){
+  closeCart();
+  const el = document.getElementById("catalogTitle");
+  if (el) el.closest("section").scrollIntoView({ behavior:"smooth" });
+}
 
 function renderDrawer(){
   const catMap = Object.fromEntries(CATEGORIES.map(c=>[c.id,c]));
@@ -759,8 +764,17 @@ function renderDrawer(){
     return;
   }
 
+  if (cart.length === 0) {
+    body.innerHTML = `
+      <div class="empty-cart">
+        <p>Aún no has agregado productos. Explora el catálogo y presiona el botón <strong>"+"</strong> en los productos que te interesen.</p>
+        <button type="button" class="btn btn-primary" style="margin-top:18px;" onclick="goToCatalog()">Ver productos del catálogo</button>
+      </div>`;
+    return;
+  }
+
   const itemsHtml = cart.length === 0
-    ? `<p class="empty-cart">Aún no has agregado productos. Explora el catálogo y presiona el botón "+" en los productos que te interesen.</p>`
+    ? ''
     : cart.map(i => {
         const c = catMap[i.catIcon];
         return `
