@@ -8,6 +8,9 @@
 <link rel="canonical" href="https://ofalahiatuvivero.com/" />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#1e4334" />
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
 <!-- Vista previa al compartir en WhatsApp, Facebook, etc. -->
 <meta property="og:type" content="website" />
@@ -354,6 +357,9 @@
   .submit-btn:hover{ background:#16342a; }
   .submit-btn:disabled{ opacity:.5; cursor:not-allowed; }
   .form-error{ font-size:.82rem; color:#c0392b; margin-bottom:10px; }
+  .consent{ display:flex; gap:10px; align-items:flex-start; font-size:.76rem; line-height:1.5; color:var(--text-olive); margin:2px 0 14px; cursor:pointer; }
+  .consent input{ width:17px; height:17px; margin-top:2px; flex-shrink:0; accent-color:var(--bg-dark); cursor:pointer; }
+  .consent a{ color:var(--bg-dark); font-weight:500; text-decoration:underline; }
   .success-box{ text-align:center; padding:50px 10px; display:flex; flex-direction:column; align-items:center; gap:14px; }
   .success-box svg{ width:52px; height:52px; color:var(--bg-moss); }
   .success-box h3{ font-size:1.15rem; }
@@ -373,6 +379,7 @@
   <textarea name="mensaje"></textarea>
   <textarea name="productos"></textarea>
   <input type="text" name="total" />
+  <input type="text" name="autorizacion_datos" />
   <input type="text" name="bot-field" />
 </form>
 
@@ -547,7 +554,7 @@
       </ul>
     </div>
   </div>
-  <div class="foot-bottom">© <span id="year"></span> Ofalahiatu Vivero Virtual. Todos los derechos reservados.</div>
+  <div class="foot-bottom">© <span id="year"></span> Ofalahiatu Vivero Virtual. Todos los derechos reservados. · <a href="/politica-de-datos.html" style="color:inherit; text-decoration:underline;">Política de tratamiento de datos</a></div>
 </footer>
 
 <!-- ======= QUOTE DRAWER ======= -->
@@ -800,6 +807,10 @@ function renderDrawer(){
         <input class="field" placeholder="Ciudad" id="f_city" />
       </div>
       <textarea class="field" rows="3" placeholder="Detalles adicionales del pedido (plazos, lugar de entrega, etc.)" id="f_message"></textarea>
+      <label class="consent">
+        <input type="checkbox" required id="f_consent" />
+        <span>Autorizo a Ofalahiatu el tratamiento de mis datos personales para responder esta solicitud, según la <a href="/politica-de-datos.html" target="_blank" rel="noopener">Política de tratamiento de datos</a>.</span>
+      </label>
       <p class="form-error" id="formError" style="display:none;"></p>
       <button type="submit" class="submit-btn" id="submitBtn" ${cart.length===0?'disabled':''}>
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
@@ -847,6 +858,7 @@ async function submitQuote(e){
     payload.append('mensaje', mensajeAdicional || 'Ninguno');
     payload.append('productos', resumenProductos);
     payload.append('total', fmtCOP(totalPrecio));
+    payload.append('autorizacion_datos', 'Sí, aceptó la Política de tratamiento de datos el ' + new Date().toLocaleString('es-CO', { timeZone:'America/Bogota' }));
     payload.append('bot-field', '');
 
     btn.disabled = true;
